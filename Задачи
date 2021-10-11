@@ -1,0 +1,16 @@
+телеграм бота -> бронь столика -> сохранение в бд -> сохраненные столики
+рест апи у бота
+app.get("/v2/api"
+
+база данных
+id created_at updated_at
+
+БИблиотеки
+express
+postgress
+body-parser
+moment
+uuidv4
+
+
+
