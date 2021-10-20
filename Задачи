@@ -12,6 +12,19 @@ body-parser
 moment
 uuidv4
 
+
+         // if (i < 3) {
+                //     t1.push({text: tabl[i].dataValues.table_name  + ' - ' +  tabl[i].dataValues.status, callback_data: `${tabl[i].dataValues.id}`})
+                // }else if (i < 6 && i >= 3) {
+                //     t2.push({text: tabl[i].dataValues.table_name  + ' - ' +  tabl[i].dataValues.status, callback_data: `${tabl[i].dataValues.id}`})
+                // } else if (i < 9 && i >= 6) {
+                //     t3.push({text: tabl[i].dataValues.table_name  + ' - ' +  tabl[i].dataValues.status, callback_data: `${tabl[i].dataValues.id}`})
+                // }
+
+
+                            // await bot.answerCallbackQuery({callback_query_id: msg.id})
+
+
         const mm = 'Свободен'
                     await TebleModel.create({mm})
 

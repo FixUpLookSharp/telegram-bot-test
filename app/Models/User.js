@@ -6,9 +6,10 @@ const User = sequelize.define('user', {
     id: {type: DataTypes.INTEGER, primaryKey: true, unicode: true, autoIncrement: true},
     first_name: {type: DataTypes.STRING},
     user_name: {type: DataTypes.STRING},
-    chatId: {type: DataTypes.STRING, unique: true,},
+    chat_id: {type: DataTypes.STRING, unique: true,},
 })
 
 User.hasOne(Table, { onDelete: "cascade"});
+Table.belongsTo(User)
 
 module.exports = User
