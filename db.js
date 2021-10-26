@@ -7,6 +7,10 @@ module.exports = new Sequelize(
     {
         host: '127.0.0.1',
         port: '5432',
-        dialect: 'postgres'
+        dialect: 'postgres',
+        dialectOptions: {
+            useUTC: true,
+        },
+        timezone: '+03:00',
     }
 )
