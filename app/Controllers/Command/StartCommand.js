@@ -9,7 +9,7 @@ const {Op} = require('sequelize')
 
 class StartCommand extends TableRender {
     /**
-     * 
+     *
      * @param bot
      */
     constructor(bot) {
