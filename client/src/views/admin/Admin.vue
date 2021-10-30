@@ -1,10 +1,21 @@
 <template>
-    $END$
+    <div>
+        Вы вошли в панель администратора
+    </div>
 </template>
 
 <script>
     export default {
-        name: "Admin"
+        data() {
+          return {
+              auth: false
+          }
+        },
+        mounted() {
+            if (!this.auth) {
+                this.$router.push('/login')
+            }
+        }
     }
 </script>
 

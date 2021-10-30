@@ -8,7 +8,7 @@
 //     booking_time_before: {type: DataTypes.TIME, defaultValue: null},
 // })
 //
-// const Users = sequelize.define('user', {
+// const Users = sequelize.define('routes', {
 //     id: {type: DataTypes.INTEGER, primaryKey: true, unicode: true, autoIncrement: true},
 //     first_name: {type: DataTypes.STRING},
 //     user_name: {type: DataTypes.STRING},

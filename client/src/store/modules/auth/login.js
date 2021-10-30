@@ -1,7 +1,9 @@
+
 export default {
     actions: {
-        async loginSubmit() {
-            console.log('login')
+        async loginSubmit(ctx, data) {
+            console.log(data)
+
         }
     },
     mutations: {

@@ -1,11 +1,6 @@
 const UserModel = require('../../Models/User')
-const TableModel = require('../../Models/Table')
 const {freeTables} = require('../../../options')
 const TableRender = require('../Render/TableRender')
-const moment = require('moment')
-const {Op} = require('sequelize')
-
-
 
 class StartCommand extends TableRender {
     /**
