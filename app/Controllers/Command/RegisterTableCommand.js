@@ -1,10 +1,10 @@
-const UserModel = require('../../Models/User')
-const TableModel = require('../../Models/Table')
-const {cancel} = require('../../../options')
-const moment = require('moment');
+import {User} from '../../Models/User'
+import {Table} from '../../Models/Table'
+import {cancel} from '../../../options'
+import moment from 'moment'
 
 
-class RegisterTableCommand {
+export default class RegisterTableCommand {
     /**
      *
      * @param bot
@@ -33,10 +33,10 @@ class RegisterTableCommand {
         const chatId = msg.message.chat.id
         const data = msg.data.substr(15)
         await this.bot.deleteMessage(chatId, msg.message.message_id)
-        let user =  await UserModel.findOne(
+        let user =  await User.findOne(
             {where : {chat_id: `${chatId}`}}
         );
-        let table = await TableModel.findOne(
+        let table = await Table.findOne(
             {where : {id: data}}
         );
 
@@ -66,6 +66,3 @@ class RegisterTableCommand {
 
 
 }
-
-
-module.exports = RegisterTableCommand

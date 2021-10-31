@@ -1,7 +1,7 @@
-const TableModel = require('../Models/Table')
-const {STATUS_FREE, STATUS_BUSY} = require('../Models/Table')
+import {Table} from '../Models/Table'
+import {STATUS_FREE, STATUS_BUSY} from '../Models/Table'
 
-class TablesSeeder
+export default class TablesSeeder
 {
    async seed() {
         let tables =
@@ -17,10 +17,9 @@ class TablesSeeder
                 {table_name: 'Зал №3', status: STATUS_FREE},
             ]
 
-        await TableModel.bulkCreate(tables)
+        await Table.bulkCreate(tables)
     }
 
 
 }
 
-module.exports = TablesSeeder

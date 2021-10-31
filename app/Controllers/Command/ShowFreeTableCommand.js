@@ -1,8 +1,6 @@
-const UserModel = require('../../Models/User')
-const TableModel = require('../../Models/Table')
-const TableRender = require('../Render/TableRender')
+import TableRender from '../Render/TableRender'
 
-class ShowFreeTableCommand extends TableRender {
+export default class ShowFreeTableCommand extends TableRender {
     /**
      *
      * @param bot
@@ -25,11 +23,11 @@ class ShowFreeTableCommand extends TableRender {
     }
 
     async handleMessage(msg) {
-        this.renderTable(msg)
+       await this.renderTable(msg)
     }
 
     async handleQuery(msg) {
-        this.renderTable(msg)
+       await this.renderTable(msg)
     }
 
     async renderTable(msg) {
@@ -39,4 +37,3 @@ class ShowFreeTableCommand extends TableRender {
 }
 
 
-module.exports = ShowFreeTableCommand

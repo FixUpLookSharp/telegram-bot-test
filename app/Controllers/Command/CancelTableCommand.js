@@ -1,7 +1,7 @@
-const UserModel = require('../../Models/User')
-const TableModel = require('../../Models/Table')
+import {User}  from '../../Models/User'
+import {Table}  from '../../Models/Table'
 
-class CancelTableCommand {
+export default class CancelTableCommand {
     /**
      *
      * @param bot
@@ -29,11 +29,11 @@ class CancelTableCommand {
     async handleQuery(msg) {
         const chatId = msg.message.chat.id
         await this.bot.deleteMessage(chatId, msg.message.message_id);
-        let user =  await UserModel.findOne(
+        let user =  await User.findOne(
             {where : {chat_id: `${chatId}`}}
         );
         let tableId = (await user.getTable()).id
-        let table = await TableModel.findOne(
+        let table = await Table.findOne(
             {where: {id: tableId}}
         )
 
@@ -43,9 +43,6 @@ class CancelTableCommand {
         await table.save()
 
         await this.bot.sendMessage(chatId, 'Бронирование отменено, до новых встречь!')
+    }
+
 }
-
-
-}
-
-module.exports = CancelTableCommand

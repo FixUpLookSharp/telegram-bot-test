@@ -1,24 +1,30 @@
-require("dotenv").config()
-const TelegramApi = require('node-telegram-bot-api')
+import dotenv from 'dotenv'
+dotenv.config()
+
+import TelegramApi from 'node-telegram-bot-api'
 const token = process.env.TOKEN
 
-const sequelize = require('./db')
+import {sequelize} from './db'
+
 const bot = new TelegramApi(token, {polling: true})
 
-const CommandController =  require('./app/Controllers/CommandController')
-const CheckBookingController =  require('./app/Controllers/CheckBookingController')
-const TablesSeeder = require('./app/Seeders/TablesSeeder');
-// import TablesSeeder from './app/Seeders/TablesSeeder'
+import CommandController from './app/Controllers/CommandController'
+import CheckBookingController from './app/Controllers/CheckBookingController'
+import TablesSeeder from './app/Seeders/TablesSeeder'
 
 const CheckBooking = new CheckBookingController(bot)
 const Command = new CommandController(bot);
 const tablesSeeder = new TablesSeeder();
 
-const express = require('express')
-const path = require('path');
-const bodyParser = require('body-parser')
+import express from 'express'
+import path from 'path'
+import bodyParser from 'body-parser'
 const app = express()
-const routes = require('./server/routes/user')
+import router from './server/routes/user'
+import { URL } from 'url'
+const __filename = new URL('', import.meta.url).pathname;
+const __dirname = new URL('.', import.meta.url).pathname;
+
 const port = process.env.PORT || 3000
 const hostname = process.env.HOSTNAME
 
@@ -26,8 +32,7 @@ app.use(express.urlencoded({extended: false}));
 app.use(bodyParser.json())
 
 app.use('/', express.static(path.join(__dirname, './client/dist')));
-// app.use('/api/v1', require('./server/routes/route'))
-app.use('/api/v1', routes)
+app.use('/api/v1', router)
 
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, "./client/dist/index.html"));

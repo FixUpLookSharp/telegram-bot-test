@@ -1,8 +1,8 @@
-const UserModel = require('../../Models/User')
-const {freeTables} = require('../../../options')
-const TableRender = require('../Render/TableRender')
+import {User} from '../../Models/User'
+import {freeTables} from '../../../options'
+import TableRender from '../Render/TableRender'
 
-class StartCommand extends TableRender {
+export default class StartCommand extends TableRender {
     /**
      *
      * @param bot
@@ -28,16 +28,16 @@ class StartCommand extends TableRender {
         let chatId = msg.chat.id
         let user_name = msg.chat.username
         let first_name = msg.chat.first_name
-        const user = await UserModel.findOne({where: {chat_id: `${chatId}`}})
+        const user = await User.findOne({where: {chat_id: `${chatId}`}})
         if (user === null) {
-            await UserModel.create({first_name: first_name, user_name: user_name, chat_id: chatId})
+            await User.create({first_name: first_name, user_name: user_name, chat_id: chatId})
         }
         await this.bot.sendMessage(chatId, 'Добро пожаловать в кальянную номер 1')
         await this.bot.sendMessage(chatId, 'Забронируйте удобный для вас столик', freeTables)
     }
 
     async handleQuery(msg) {
-        this.renderTable(msg)
+        await this.renderTable(msg)
     }
 
     async renderTable(msg) {
@@ -48,4 +48,3 @@ class StartCommand extends TableRender {
 
 }
 
-module.exports = StartCommand

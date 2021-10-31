@@ -1,8 +1,8 @@
-const TableModel = require('../Models/Table')
-const moment = require('moment')
-const {Op} = require('sequelize')
-
-class CheckBookingController {
+import {Table} from '../Models/Table'
+import moment from 'moment'
+import pkg from 'sequelize';
+const {Op} = pkg;
+export default class CheckBookingController {
     /**
      *
      * @param bot
@@ -14,7 +14,7 @@ class CheckBookingController {
     async checkBooking() {
 
         let currentDate = moment().format('YYYY-MM-DD HH:mm:ss')
-        let tables = await TableModel.findAll(
+        let tables = await Table.findAll(
             {where: {
                     booking_time_before: {
                         [Op.lte]: currentDate
@@ -43,4 +43,3 @@ class CheckBookingController {
     }
 }
 
-module.exports = CheckBookingController

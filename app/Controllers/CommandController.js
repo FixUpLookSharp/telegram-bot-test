@@ -1,13 +1,10 @@
-const UserModel = require('../Models/User')
-const TableModel = require('../Models/Table')
-
 //command
-const RegisterTableCommand = require('./Command/RegisterTableCommand')
-const ShowFreeTableCommand = require('./Command/ShowFreeTableCommand')
-const StartCommand = require('./Command/StartCommand')
-const CancelTableCommand = require('./Command/CancelTableCommand')
+import RegisterTableCommand from './Command/RegisterTableCommand'
+import ShowFreeTableCommand from './Command/ShowFreeTableCommand'
+import StartCommand from './Command/StartCommand'
+import CancelTableCommand from './Command/CancelTableCommand'
 
-class CommandController {
+export default class CommandController {
     /**
      *
      * @param bot
@@ -57,4 +54,3 @@ class CommandController {
 
 }
 
-module.exports = CommandController

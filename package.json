@@ -3,9 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "dev": "nodemon index.js -L",
-    "start": "node index.js"
+    "dev": "nodemon --experimental-modules --es-module-specifier-resolution=node index.js -L",
+    "start": "node --experimental-modules --es-module-specifier-resolution=node index.js"
   },
   "keywords": [],
   "author": "",

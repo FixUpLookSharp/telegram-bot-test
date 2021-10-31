@@ -1,9 +1,9 @@
-const TableModel = require('../../Models/Table')
+import {Table} from '../../Models/Table'
 
-class TableRender {
+export default class TableRender {
     async getTables() {
-        const countTables = Object.keys(await TableModel.findAll()).length
-        const tables =  await TableModel.findAll({
+        const countTables = Object.keys(await Table.findAll()).length
+        const tables =  await Table.findAll({
             order: [
                 ['id', 'ASC']
             ],
@@ -22,4 +22,3 @@ class TableRender {
     }
 }
 
-module.exports = TableRender
