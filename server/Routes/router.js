@@ -1,12 +1,9 @@
 import { Router } from 'express'
-import {User} from '../../app/Models/User'
-import UserController from "../Controllers/UserController";
+// import UserController from "../Controllers/UserController";
+import AuthController from '../Controllers/AuthController'
 const router = Router()
 
-
-
-router.post('/all-users', UserController.getAllUsers)
-
+// auth
+router.post('/login', AuthController.login)
 
 export default router
-

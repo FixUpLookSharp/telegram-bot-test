@@ -1,40 +1,40 @@
-import {User}  from '../../Models/User'
-import {Table}  from '../../Models/Table'
+import { User } from '../../Models/User'
+import { Table } from '../../Models/Table'
 
 export default class CancelTableCommand {
     /**
      *
      * @param bot
      */
-    constructor(bot) {
+    constructor (bot) {
         this.bot = bot
     }
 
-    getCommand() {
+    getCommand () {
         return false
     }
 
-    isMyMessage(msg) {
+    isMyMessage (msg) {
         return false
     }
 
-    isMyQuery(msg) {
-        return msg.data == 'cancel'
+    isMyQuery (msg) {
+        return msg.data === 'cancel'
     }
 
-    async handleMessage(msg) {
+    async handleMessage (msg) {
 
     }
 
-    async handleQuery(msg) {
+    async handleQuery (msg) {
         const chatId = msg.message.chat.id
-        await this.bot.deleteMessage(chatId, msg.message.message_id);
-        let user =  await User.findOne(
-            {where : {chat_id: `${chatId}`}}
-        );
-        let tableId = (await user.getTable()).id
-        let table = await Table.findOne(
-            {where: {id: tableId}}
+        await this.bot.deleteMessage(chatId, msg.message.message_id)
+        const user = await User.findOne(
+            { where: { chat_id: `${chatId}` } }
+        )
+        const tableId = (await user.getTable()).id
+        const table = await Table.findOne(
+            { where: { id: tableId } }
         )
 
         table.status = 'свободно'
@@ -44,5 +44,4 @@ export default class CancelTableCommand {
 
         await this.bot.sendMessage(chatId, 'Бронирование отменено, до новых встречь!')
     }
-
 }

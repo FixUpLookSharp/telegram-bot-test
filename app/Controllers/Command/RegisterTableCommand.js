@@ -1,46 +1,45 @@
-import {User} from '../../Models/User'
-import {Table} from '../../Models/Table'
-import {cancel} from '../../../options'
+import { User } from '../../Models/User'
+import { Table } from '../../Models/Table'
+import { cancel } from '../../../options'
 import moment from 'moment'
-
 
 export default class RegisterTableCommand {
     /**
      *
      * @param bot
      */
-    constructor(bot) {
+    constructor (bot) {
         this.bot = bot
     }
 
-    getCommand() {
+    getCommand () {
         return false
     }
 
-    isMyMessage(msg) {
+    isMyMessage (msg) {
         return false
     }
 
-    isMyQuery(msg) {
-        return msg.data.includes("register_table-");
+    isMyQuery (msg) {
+        return msg.data.includes('register_table-')
     }
 
-    async handleMessage(msg) {
+    async handleMessage (msg) {
 
     }
 
-    async handleQuery(msg) {
+    async handleQuery (msg) {
         const chatId = msg.message.chat.id
         const data = msg.data.substr(15)
         await this.bot.deleteMessage(chatId, msg.message.message_id)
-        let user =  await User.findOne(
-            {where : {chat_id: `${chatId}`}}
-        );
-        let table = await Table.findOne(
-            {where : {id: data}}
-        );
+        const user = await User.findOne(
+            { where: { chat_id: `${chatId}` } }
+        )
+        const table = await Table.findOne(
+            { where: { id: data } }
+        )
 
-        if (table.status == 'занят' && !await user.getTable()) {
+        if (table.status === 'занят' && !await user.getTable()) {
             await this.bot.sendMessage(chatId, 'Данный стол уже занят, выберете другой свободный столик!')
             return
         }
@@ -52,10 +51,10 @@ export default class RegisterTableCommand {
         }
         try {
             table.status = 'занят'
-            table.booking_time_before = moment().add(4, 'hours').format("YYYY-MM-DD HH:mm:ss")
+            table.booking_time_before = moment().add(4, 'hours').format('YYYY-MM-DD HH:mm:ss')
             await table.save()
             await user.setTable(table)
-        }catch (e) {
+        } catch (e) {
             console.log(e)
         }
 
@@ -63,6 +62,4 @@ export default class RegisterTableCommand {
         await this.bot.sendMessage(chatId, 'Время бронирование действует в течении 4 часов')
         await this.bot.sendMessage(chatId, 'Если хотите отменить бронирование нажмите "Отмена"', cancel)
     }
-
-
 }

@@ -14,26 +14,24 @@ export default class ShowFreeTableCommand extends TableRender {
         return {command: '/free_tables', description: 'Свободные столики'}
     }
 
-    isMyMessage(msg) {
-        return msg.text == '/free_tables'
+    isMyMessage (msg) {
+        return msg.text === '/free_tables'
     }
 
     isMyQuery(msg) {
-        return msg.data == 'allFreeTables'
+        return msg.data === 'allFreeTables'
     }
 
     async handleMessage(msg) {
-       await this.renderTable(msg)
+        await this.renderTable(msg)
     }
 
     async handleQuery(msg) {
-       await this.renderTable(msg)
+        await this.renderTable(msg)
     }
 
     async renderTable(msg) {
-        let chatId = msg.chat.id
+        const chatId = msg.chat.id
         await this.bot.sendMessage(chatId, 'Забронируйте удобный для вас столик', await this.getTables())
     }
 }
-
-

@@ -1,16 +1,25 @@
-import {Sequelize} from 'sequelize'
+import { Sequelize } from 'sequelize'
+import dotenv from 'dotenv'
+dotenv.config()
+
+const database = process.env.DB_DATABASE
+const username = process.env.DB_USERNAME
+const password = process.env.DB_PASSWORD
+const host = process.env.DB_HOST
+const port = process.env.DB_PORT
+const db = process.env.DB_CONNECTION
 
 export const sequelize = new Sequelize(
-    'homestead',
-    'homestead',
-    'secret',
+    database,
+    username,
+    password,
     {
-        host: '127.0.0.1',
-        port: '5432',
-        dialect: 'postgres',
+        host: host,
+        port: port,
+        dialect: db,
         dialectOptions: {
-            useUTC: true,
+            useUTC: true
         },
-        timezone: '+03:00',
+        timezone: '+03:00'
     }
 )
